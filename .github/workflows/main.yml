@@ -1,11 +1,11 @@
-name: Build and Deploy Windows Container App to Azure App Service
 
-# Trigger the build on commits into the master branch
+
+name: Push to GCR GitHub Action
 on:
   push:
-    branches:
-      - main
-
+    tags:
+    - '*'
+    
 # Starts jobs and sets the type of runner (Windows) they will run on
 jobs:
   build-and-deploy-to-azure:
