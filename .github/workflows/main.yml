@@ -1,0 +1,36 @@
+name: Build and Deploy Windows Container App to Azure App Service
+
+# Trigger the build on commits into the master branch
+on:
+  push:
+    branches:
+      - main
+
+# Starts jobs and sets the type of runner (Windows) they will run on
+jobs:
+  build-and-deploy-to-azure:
+    runs-on: windows-latest
+  
+     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checks out repository so your workflow can access it
+    - uses: actions/checkout@v1
+    
+    # Configure gcp key
+    - name: Configure GCP credentials
+      uses: actions/checkout@v2
+      with:
+          gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          registry: gcr.io
+          project_id: devops-313107
+    # Build and push the image to Container Registry
+    - name: Build and Push container to registry
+      run: |
+        docker build -t ${{registry}}/myimage .
+        docker push ${{registry}}/myimage
+          
+    
