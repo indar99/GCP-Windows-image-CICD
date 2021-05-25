@@ -1,15 +1,18 @@
-
-
-name: Push to GCR GitHub Action
 on:
   push:
-    tags:
-    - '*'
+    branches:
+    - main
+  pull_request:
     
 # Starts jobs and sets the type of runner (Windows) they will run on
 jobs:
   build-and-deploy-to-azure:
     runs-on: windows-latest
+    
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
 
     steps:
     # Checks out repository so your workflow can access it
