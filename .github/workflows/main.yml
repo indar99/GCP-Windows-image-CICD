@@ -25,10 +25,22 @@ jobs:
           gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
           registry: gcr.io
           project_id: devops-313107
+          
+    - name: install packages
+      run: yarn install
+    - name: check linting
+      run: yarn lint
+    - name: test
+      run: yarn test
     # Build and push the image to Container Registry
     - name: Build and Push container to registry
       run: |
         docker build -t ${{registry}}/myimage .
-        docker push ${{registry}}/myimage
+        
+   
+  
+  
+  #  - name: push docker image 
+  #      docker push ${{registry}}/myimage
           
     
