@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-    - main
+      - main
 
     
 # Starts jobs and sets the type of runner (Windows) they will run on
