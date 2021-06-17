@@ -26,12 +26,7 @@ jobs:
           registry: gcr.io
           project_id: devops-313107
           
-    - name: install packages
-      run: yarn install
-    - name: check linting
-      run: yarn lint
-    - name: test
-      run: yarn test
+    
     # Build and push the image to Container Registry
     - name: Build and Push container to registry
       run: |
