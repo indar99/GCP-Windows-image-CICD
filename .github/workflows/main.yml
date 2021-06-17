@@ -2,7 +2,7 @@ on:
   push:
     branches:
     - main
-  pull_request:
+
     
 # Starts jobs and sets the type of runner (Windows) they will run on
 jobs:
