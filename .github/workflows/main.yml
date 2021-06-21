@@ -38,18 +38,22 @@ jobs:
       # Ignore the failure of a step and avoid terminating the job.
       #  continue-on-error: false
       
-      
+            
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
-          # Key is named differently to avoid collision
-          key: ${{ runner.os }}-multi-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-multi-buildx
+            ${{ runner.os }}-buildx-
       
       - name: Build the Docker image
         run: docker build -t my-image-name:$(date +%s) .
+        
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
       
       
