@@ -52,7 +52,7 @@ jobs:
         
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-cache
+          del  /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
       
